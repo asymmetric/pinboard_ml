@@ -1,0 +1,9 @@
+(executable
+ (public_name pinboard_ml)
+ (name main)
+ (libraries pinboard_ml))
+
+(rule
+ (targets main.ml)
+ (deps main.eml.ml)
+ (action (run dream_eml %{deps} --workspace %{workspace_root})))

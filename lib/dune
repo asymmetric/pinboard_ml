@@ -1,0 +1,3 @@
+(library
+ (name pinboard_ml)
+ (libraries dream caqti-driver-sqlite3))
