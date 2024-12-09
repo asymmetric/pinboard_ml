@@ -25,14 +25,14 @@
 
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            dune
+            gmp
             libev
             ocaml
             ocamlPackages.ocamlformat
-            pkg-config
             openssl
+            pkg-config
             sqlite
-            gmp
-            dune
           ];
         };
       }

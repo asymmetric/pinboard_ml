@@ -20,7 +20,8 @@
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends
-   (ocaml (= 5.1.1))
+   ;; The version in Nixpkgs
+   (ocaml (= 5.2.1))
    dream
    caqti-driver-sqlite3)
  (tags
