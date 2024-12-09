@@ -1,10 +1,12 @@
 {
   inputs = {
+    dune-flake.url = "github:ocaml/dune";
     flake-utils.url = "github:numtide/flake-utils";
   };
   outputs =
     {
       self,
+      dune-flake,
       flake-utils,
       nixpkgs,
     }:
@@ -14,7 +16,9 @@
     flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = nixpkgs.legacyPackages.${system}.appendOverlays [
+          dune-flake.overlays.default
+        ];
       in
       {
         # packages.default = pkgs.legacyPackages.${system}.${package};
@@ -28,6 +32,7 @@
             openssl
             sqlite
             gmp
+            dune
           ];
         };
       }

@@ -1,4 +1,4 @@
-(lang dune 3.7)
+(lang dune 3.18)
 
 (name pinboard_ml)
 
@@ -7,9 +7,9 @@
 (source
  (github username/reponame))
 
-(authors "Author Name")
+(authors "Author Name <author@example.com>")
 
-(maintainers "Maintainer Name")
+(maintainers "Maintainer Name <maintainer@example.com>")
 
 (license LICENSE)
 
@@ -19,8 +19,11 @@
  (name pinboard_ml)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml dune dream caqti-driver-sqlite3)
+ (depends
+   (ocaml (= 5.1.1))
+   dream
+   caqti-driver-sqlite3)
  (tags
-  (topics "to describe" your project)))
+  ("add topics" "to describe" your project)))
 
-; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
