@@ -20,7 +20,7 @@ type tag = {
 let list_tags =
   let query =
     let open Caqti_request.Infix in
-    (T.unit ->* T.(tup2 int string))
+    (T.unit ->* T.(t2 int string))
     "SELECT id, name FROM tags" in
   fun (module Db : DB) ->
     Lwt.bind (Db.collect_list query ()) (fun tags_or_error -> Caqti_lwt.or_fail tags_or_error)
