@@ -1,0 +1,19 @@
+CREATE TABLE tags (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE links (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  url TEXT NOT NULL,
+  description TEXT NOT NULL
+);
+
+CREATE TABLE links_tags (
+  link_id INTEGER NOT NULL,
+  tag_id INTEGER NOT NULL,
+  PRIMARY KEY (link_id, tag_id),
+  FOREIGN KEY (link_id) REFERENCES links(id),
+  FOREIGN KEY (tag_id) REFERENCES tag(id)
+);

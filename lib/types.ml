@@ -3,13 +3,16 @@ type link = {
   title : string;
   url : string;
   description: string;
-  (* should it actually be an array? *)
-  tag_ids : int list;
-  (* date *)
+  (* TODO *)
+  (* saved_at: Ptime.t; *)
 }
 
 type tag = {
   id : int;
   name : string;
+}
+
+type link_tag_mapping = {
   link_id: int;
+  tag_id: int;
 }

@@ -8,25 +8,53 @@ let () =
   @@ let open Lwt.Infix in Dream.router [
     Dream.get "/" (fun _ -> App.Templates.index |> Dream.html);
 
-    (* return all tags *)
-    Dream.get "/tags"
-      (fun request ->
-        Dream.sql request App.Actions.list_tags >>= fun tags -> App.Templates.list_tags tags |> Dream.html);
+    Dream.scope "/links" [] [
+      (* TODO: add redirect for trailing / *)
+      Dream.get ""
+        (fun request ->
+          Dream.sql request App.Actions.list_links >>= fun links -> App.Templates.list_links links |> Dream.html);
 
-    Dream.post "/tags"
-      (fun request ->
-        match%lwt Dream.form request with
-        | `Ok [ "name", name ] ->
-            Dream.sql request (App.Actions.add_tag name) >>= fun () -> Dream.redirect request "/tags"
-        | _ -> Dream.empty `Bad_Request);
+      Dream.get "/new" (fun request -> App.Templates.add_link request |> Dream.html);
 
-    Dream.get "/tags/new" (fun request -> App.Templates.add_tag request |> Dream.html);
+      Dream.post ""
+        (fun request ->
+          match%lwt Dream.form request with
+          | `Ok [ "description", description; "title", title; "url", url; ] ->
+              Dream.sql request (App.Actions.add_link (title, url, description)) >>= fun () -> Dream.redirect request "/links"
+          | _ -> Dream.empty `Bad_Request);
 
-    Dream.get "/tags/:name" @@
-      fun request ->
-        let name = Dream.param request "name" in
-        Dream.sql request (App.Actions.get_tag name) >>= function
-          | Some (id, name, link_id) -> App.Templates.view_tag { id; name; link_id }  |> Dream.html;
-          | None -> Dream.empty `Not_Found
+      Dream.get "/:id" @@
+        fun request ->
+          (* TODO: make this a UUID? *)
+          let id = Dream.param request "id" |> int_of_string in
+          Dream.sql request (App.Actions.get_link id) >>= function
+            | Some (id, title, url, description) -> App.Templates.view_link { id; title; url; description }  |> Dream.html;
+            | None -> Dream.empty `Not_Found
+    ];
+
+    Dream.scope "/tags" [] [
+      (* TODO: add redirect for trailing / *)
+      Dream.get ""
+        (fun request ->
+          Dream.sql request App.Actions.list_tags >>= fun tags -> App.Templates.list_tags tags |> Dream.html);
+
+      Dream.post "/"
+        (fun request ->
+          match%lwt Dream.form request with
+          | `Ok [ "name", name ] ->
+              Dream.sql request (App.Actions.add_tag name) >>= fun () -> Dream.redirect request "/tags"
+          | _ -> Dream.empty `Bad_Request);
+
+      Dream.get "/new" (fun request -> App.Templates.add_tag request |> Dream.html);
+
+      Dream.get "/:id" @@
+        fun request ->
+          (* TODO: make this a UUID? *)
+          let id = Dream.param request "id" |> int_of_string in
+          Dream.sql request (App.Actions.get_tag id) >>= function
+            | Some (id, name) -> App.Templates.view_tag { id; name }  |> Dream.html;
+            | None -> Dream.empty `Not_Found
+
+    ];
   ]
   (* @@ Dream.not_found *)
