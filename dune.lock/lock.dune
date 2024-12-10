@@ -10,7 +10,7 @@
   ((source
     https://github.com/ocaml-dune/opam-overlays.git#9bad4501e6dd4feb7b61b48d29812241d1d711f9))
   ((source
-    https://github.com/ocaml/opam-repository.git#e3955ab42e76882e11355872963e4c151fe4efb7))))
+    https://github.com/ocaml/opam-repository.git#1b2a01620fb88e9beac02940ce59c6de74151655))))
 
 (expanded_solver_variable_bindings
  (variable_values

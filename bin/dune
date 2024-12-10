@@ -1,6 +1,7 @@
 (executable
  (public_name pinboard_ml)
  (name main)
+ (preprocess (pps lwt_ppx))
  (libraries pinboard_ml))
 
 (rule

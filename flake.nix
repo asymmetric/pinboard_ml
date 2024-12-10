@@ -24,15 +24,16 @@
         # packages.default = pkgs.legacyPackages.${system}.${package};
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
+          packages = with pkgs; [
             dune
             gmp
             libev
             ocaml
             ocamlPackages.ocamlformat
+            ocamlPackages.utop
             openssl
             pkg-config
-            sqlite
+            sqlite.dev # needed for dune build
           ];
         };
       }
