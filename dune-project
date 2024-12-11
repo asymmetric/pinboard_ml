@@ -1,6 +1,6 @@
 (lang dune 3.18)
 
-(name pinboard_ml)
+(name desert-cache)
 
 (generate_opam_files true)
 
@@ -16,7 +16,7 @@
 (documentation https://url/to/documentation)
 
 (package
- (name pinboard_ml)
+ (name desert-cache)
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends

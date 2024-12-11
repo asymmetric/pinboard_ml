@@ -1,5 +1,5 @@
 (include_subdirs qualified)
 
 (library
- (name pinboard_ml)
+ (name desert_cache)
  (libraries dream caqti-driver-sqlite3))

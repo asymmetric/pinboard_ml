@@ -1,5 +1,5 @@
 (executable
- (public_name pinboard_ml)
+ (public_name desert-cache)
  (name main)
  (preprocess (pps lwt_ppx))
- (libraries pinboard_ml))
+ (libraries desert_cache))

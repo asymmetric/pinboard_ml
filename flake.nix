@@ -11,7 +11,7 @@
       nixpkgs,
     }:
     let
-      package = "pinboard_ml";
+      package = "desert_cache";
     in
     flake-utils.lib.eachDefaultSystem (
       system:

@@ -1,4 +1,4 @@
-module App = Pinboard_ml
+module App = Desert_cache
 
 let () =
   Dream.run
