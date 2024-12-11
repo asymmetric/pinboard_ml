@@ -1,0 +1,4 @@
+(rule
+ (targets layout.ml links.ml tags.ml)
+ (deps layout.eml.ml links.eml.ml tags.eml.ml)
+ (action (run dream_eml %{deps} --workspace %{workspace_root})))
