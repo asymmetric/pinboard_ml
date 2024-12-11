@@ -1,6 +1,6 @@
 (library
  (name pinboard_ml)
- (libraries dream caqti-driver-sqlite3))
+ (libraries dream caqti-driver-sqlite3 actions))
 
 (rule
  (target templates.ml)

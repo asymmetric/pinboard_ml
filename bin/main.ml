@@ -12,7 +12,7 @@ let () =
       (* TODO: add redirect for trailing / *)
       Dream.get ""
         (fun request ->
-          Dream.sql request App.Actions.list_links >>= fun links -> App.Templates.list_links links |> Dream.html);
+          Dream.sql request Actions.Links.list_links >>= fun links -> App.Templates.list_links links |> Dream.html);
 
       Dream.get "/new" (fun request -> App.Templates.add_link request |> Dream.html);
 
